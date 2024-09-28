@@ -1,0 +1,39 @@
+/* src/components/SectionTwo.css */
+
+.section-two {
+  background-color: var(--card-background);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.section-two h3 {
+  margin-top: 0;
+}
+
+.ventas-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ventas-table th,
+.ventas-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.ventas-table th {
+  background-color: var(--navbar-background);
+  color: var(--text-color);
+  text-align: left;
+}
+
+.ventas-table tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.ventas-table tr:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}

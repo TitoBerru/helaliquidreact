@@ -1,0 +1,183 @@
+/* src/components/FormDrawer.css */
+
+.form-drawer {
+  padding: 20px;
+  background-color: var(--card-background);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.drawer-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* Dark Theme Adjustments */
+.drawer-dark {
+  background-color: var(--card-background) !important;
+  color: var(--text-color) !important;
+}
+
+/* Estilos para el formulario dentro del Drawer */
+.form {
+  
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.form-icon {
+  font-size: 1.2em;
+  color: var(--text-color);
+}
+.drawer-header {
+  flex-shrink: 0;
+}
+
+.form-btn-container {
+  flex-shrink: 0;
+}
+
+.form-group select,
+.form-group input {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+  transition: border-color 0.3s, background-color 0.3s;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: #8884d8;
+  box-shadow: 0 0 0 2px rgba(136, 132, 216, 0.2);
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.submit-btn {
+  padding: 12px 20px;
+  background-color: #8884d8;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #6c63b5;
+  transform: translateY(-2px);
+}
+
+.submit-btn:active {
+  background-color: #574b90;
+  transform: translateY(0);
+}
+.form-drawer{
+  height:50%;
+}
+
+/* Dark Theme Adjustments */
+.form-dark select,
+.form-dark input {
+  background-color: #34495e;
+  border: 1px solid #444;
+  color: #ecf0f1;
+}
+
+.form-dark select:focus,
+.form-dark input:focus {
+  border-color: #82ca9d;
+  box-shadow: 0 0 0 2px rgba(130, 202, 157, 0.2);
+}
+
+.form-dark .submit-btn {
+  background-color: #82ca9d;
+}
+
+.form-dark .submit-btn:hover {
+  background-color: #5fae7f;
+}
+
+.form-dark .submit-btn:active {
+  background-color: #4a9364;
+}
+
+/* Mensajes de Éxito/Error */
+.submit-message {
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.submit-message.success {
+  background-color: #2ecc71;
+  color: #ffffff;
+}
+
+.submit-message.error {
+  background-color: #e74c3c;
+  color: #ffffff;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 500px) {
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+}

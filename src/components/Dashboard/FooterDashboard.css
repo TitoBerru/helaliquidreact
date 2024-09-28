@@ -1,0 +1,41 @@
+/* src/components/Footer.css */
+
+.footer {
+  background-color: var(--footer-background);
+  color: var(--link-color);
+  text-align: center;
+  /* padding: 15px 0; */
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+  margin: 0;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-data {
+  display: flex;
+  gap: 20px; /* Separación entre los dos datos */
+  font-size: 1.2rem;
+}
+
+/* Estilos para que los valores se adapten al dark mode */
+:root[data-theme='dark'] {
+  --footer-bg-color: #222;
+  --footer-text-color: #fff;
+}
+
+/* Estilos para que los valores se adapten al light mode */
+:root[data-theme='light'] {
+  --footer-bg-color: #f8f9fa;
+  --footer-text-color: #333;
+}

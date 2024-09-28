@@ -1,0 +1,131 @@
+/* SECTIONS */
+
+.section-one,
+.section-two,
+.section-three,
+.section-four {
+  background-color: var(--card-background);
+  color: var(--text-color);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  margin:2px;
+ 
+}
+
+.section-one h3,
+.section-two h3,
+.section-three h3,
+.section-four h3 {
+  margin-top: 0;
+  
+}
+/* FORM */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1; /* Permite que el formulario ocupe el espacio disponible */
+  max-height: 400px; /* Altura máxima del formulario */
+  overflow-y: auto; /* Permite scroll si el contenido excede la altura */
+  padding-right: 10px; /* Espacio para el scrollbar */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.form-icon {
+  font-size: 1.2em;
+  color: var(--text-color);
+}
+
+.form-group select,
+.form-group input {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1 em;
+  transition: border-color 0.3s, background-color 0.3s;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: #8884d8;
+  box-shadow: 0 0 0 2px rgba(136, 132, 216, 0.2);
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.submit-btn {
+  padding: 12px 20px;
+  background-color: #8884d8;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #6c63b5;
+  transform: translateY(-2px);
+}
+
+.submit-btn:active {
+  background-color: #574b90;
+  transform: translateY(0);
+}
+
+/* Dark Theme Adjustments */
+
+.form-dark select,
+.form-dark input {
+  background-color: #2c3e50;
+  border: 1px solid #444;
+  color: #ecf0f1;
+}
+
+.form-dark select:focus,
+.form-dark input:focus {
+  border-color: #82ca9d;
+  box-shadow: 0 0 0 2px rgba(130, 202, 157, 0.2);
+}
+
+.form-dark .submit-btn {
+  background-color: #82ca9d;
+}
+
+.form-dark .submit-btn:hover {
+  background-color: #5fae7f;
+}
+
+.form-dark .submit-btn:active {
+  background-color: #4a9364;
+}
+
+
+
+
+
+

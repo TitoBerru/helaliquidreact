@@ -1,0 +1,88 @@
+/* src/components/Navbar.css */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--navbar-background);
+  padding: 10px 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: background-color 0.3s;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-color);
+  display: none;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 24px;
+}
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.theme-toggle-btn:hover {
+  opacity: 0.7;
+}
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #8884d8;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-btn:hover {
+  background-color: #6c63b5;
+  transform: translateY(-2px);
+}
+
+.add-btn:active {
+  background-color: #574b90;
+  transform: translateY(0);
+}
+
+/* Dark Mode Adjustments */
+.dark-theme .add-btn {
+  background-color: #82ca9d;
+}
+
+.dark-theme .add-btn:hover {
+  background-color: #5fae7f;
+}
+
+.dark-theme .add-btn:active {
+  background-color: #4a9364;
+}
+
+@media (max-width: 769px) {
+  .menu-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+    display: contents;
+  }
+}
