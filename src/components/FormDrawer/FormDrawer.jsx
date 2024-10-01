@@ -25,13 +25,16 @@ const FormDrawer = ({ isOpen, toggleDrawer }) => {
   const [recetas, setRecetas] = React.useState([]);
 
   const [formData, setFormData] = React.useState({
-    cliente: "",
-    receta: "",
+
+    cliente:"",
     mililitros: 10,
     nico: 0,
-    unidades: 1,
-    precioVenta: 1,
-    tipo: "CONSULTA",
+    precioVenta:0,
+    receta:0,
+    tipo:0,
+    unidades:1
+
+
   });
 
   const [errors, setErrors] = React.useState({});
@@ -41,7 +44,7 @@ const FormDrawer = ({ isOpen, toggleDrawer }) => {
   React.useEffect(() => {
     // Fetch clientes
     axios
-      .get("http://localhost:3001/api/customer")
+      .get("http://localhost:3001/api/v1/customer")
       .then((response) => {
         // console.log(JSON.stringify(response.data, null, 2));
         setClientes(response.data);
@@ -53,9 +56,9 @@ const FormDrawer = ({ isOpen, toggleDrawer }) => {
 
     // Fetch recetas
     axios
-      .get("http://localhost:3001/api/recipes")
+      .get("http://localhost:3001/api/v1/recipes")
       .then((response) => {
-        console.log(JSON.stringify(response.data, null, 2));
+        // console.log(JSON.stringify(response.data, null, 2));
         setRecetas(response.data);
       })
       .catch((error) => {
@@ -68,7 +71,7 @@ const FormDrawer = ({ isOpen, toggleDrawer }) => {
 
     // Validaciones para campos numéricos
     let newValue = value;
-    if (["mililitros", "nico", "unidades", "precioVenta"].includes(name)) {
+    if (["ml", "nico", "cant", "pcioVenta"].includes(name)) {
       newValue = e.target.type === "number" ? Number(value) : value;
     }
 
@@ -103,19 +106,22 @@ const FormDrawer = ({ isOpen, toggleDrawer }) => {
 
     // Enviar datos al backend
     axios
-      .post("http://localhost:5000/api/ventas", formData)
+      .post("http://localhost:3001/api/v1/newSale", formData)
       .then((response) => {
         // Actualizar SectionTwo con la respuesta
+        console.log(formData)
         setResponseData((prevData) => [response.data, ...prevData]);
         // Resetear el formulario si es necesario
         setFormData({
-          cliente: "",
-          receta: "",
+          cliente:"",
           mililitros: 10,
           nico: 0,
-          unidades: 1,
-          precioVenta: 1,
-          tipo: "CONSULTA",
+          precioVenta:0,
+          receta:0,
+          tipo:0,
+          unidades:1
+          
+    
         });
         setErrors({});
         setSubmitSuccess("Venta registrada exitosamente.");
@@ -299,8 +305,8 @@ const FormDrawer = ({ isOpen, toggleDrawer }) => {
             onChange={handleChange}
             required
           >
-            <option value="VENTA EFECTIVA">VENTA EFECTIVA</option>
-            <option value="CONSULTA">CONSULTA</option>
+            <option value="1">VENTA EFECTIVA</option>
+            <option value="0">CONSULTA</option>
           </select>
         </div>
 

@@ -13,7 +13,7 @@ const SectionTwo = () => {
   useEffect(() => {
     const fetchSalesData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/salesLast');
+        const response = await axios.get('http://localhost:3001/api/v1/salesLast');
        
         setSalesData(response.data); // Guardar los datos de la API en el estado
         setLoading(false);
@@ -26,6 +26,22 @@ const SectionTwo = () => {
 
     fetchSalesData();
   }, []);
+
+  // Formateo fecha
+  const formatearFecha = (fechaIso) => {
+    const fecha = new Date(fechaIso);
+  
+    const pad = (n) => (n < 10 ? '0' + n : n);
+  
+    const year = fecha.getFullYear();
+    const month = pad(fecha.getMonth() + 1); // Los meses empiezan desde 0
+    const day = pad(fecha.getDate());
+    const hours = pad(fecha.getHours());
+    const minutes = pad(fecha.getMinutes());
+  
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+  };
+  // termina formateo de fecha
 
 
   if (loading) {
@@ -49,7 +65,7 @@ const SectionTwo = () => {
               <p><strong>Precio de Venta:</strong> {sale.PrecioVenta}</p>
               <p><strong>Costo:</strong> {sale.CostoTotal}</p>
               <p><strong>Ganancia:</strong> {sale.Ganancia}</p>
-              <p><strong>Fecha de Venta:</strong> {sale.FechaVenta}</p>
+              <p><strong>Fecha de Venta:</strong> {formatearFecha(sale.FechaVenta)}</p>
 
             </div>
           ))}
