@@ -19,7 +19,7 @@ import axios from "axios";
 
 const FormDrawer = ({ isOpen, toggleDrawer }) => {
   const { theme } = useContext(ThemeContext);
-  const { setResponseData } = useContext(AppContext);
+  const { setResponseData, setSalesProspects, setSales } = useContext(AppContext);
 
   const [clientes, setClientes] = React.useState([]);
   const [recetas, setRecetas] = React.useState([]);
@@ -108,6 +108,14 @@ const FormDrawer = ({ isOpen, toggleDrawer }) => {
     axios
       .post("http://localhost:3001/api/v1/newSale", formData)
       .then((response) => {
+        console.log(typeof(formData.tipo))
+        if (formData.tipo === 1) {
+          // Actualiza las ventas efectivas (SectionTwo)
+          setSales((prevSales) => [response.data, ...prevSales]);
+        } else {
+          // Actualiza los prospectos de venta (SectionOne)
+          setSalesProspects((prevProspects) => [response.data, ...prevProspects]);
+        }
         // Actualizar SectionTwo con la respuesta
         console.log(formData)
         setResponseData((prevData) => [response.data, ...prevData]);

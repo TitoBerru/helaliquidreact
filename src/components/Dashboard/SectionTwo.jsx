@@ -54,7 +54,7 @@ const SectionTwo = () => {
   
   return (
     <div className="section-two">
-      <h2>DATOS DE ULTIMA VENTA</h2>
+      <h2>VENTAS</h2>
       {salesData && salesData.length > 0 ? (
         <div className="sales-data">
           {salesData.map((sale, index) => (

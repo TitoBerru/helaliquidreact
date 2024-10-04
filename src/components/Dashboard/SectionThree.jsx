@@ -1,69 +1,50 @@
-// src/components/SectionThree.js
-import React, { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import './Sections.css';
+import React, { useState, useEffect, useContext } from 'react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import axios from 'axios';
 
-
-const data = [
-  { name: 'Enero', ventas: 4000, ingresos: 2400 },
-  { name: 'Febrero', ventas: 3000, ingresos: 1398 },
-  { name: 'Marzo', ventas: 2000, ingresos: 9800 },
-  { name: 'Abril', ventas: 2780, ingresos: 3908 },
-  { name: 'Mayo', ventas: 1890, ingresos: 4800 },
-  { name: 'Junio', ventas: 2390, ingresos: 3800 },
-  { name: 'Julio', ventas: 3490, ingresos: 4300 },
-];
 
 const SectionThree = () => {
-  const [apiData, setApiData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [chartData, setChartData] = useState([]);
 
-   // useEffect para realizar la consulta a la API cuando el componente se monte
-   useEffect(() => {
+
+  // Mapeo de números a nombres de meses
+  const monthNames = [
+    '', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+  ];
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://dolarapi.com/v1/dolares'); 
-        if (!response.ok) {
-          throw new Error('Error al consultar la API');
-        }
-        const data = await response.json();
-        setApiData(data.slice(0,2));
-        
+        const response = await axios.get('http://localhost:3001/api/v1/year');
+        // Transformar datos: Cambiar números de mes por nombres de mes
+        const formattedData = response.data.map(item => ({
+          mes: monthNames[item.Mes], // Cambiar número del mes a nombre
+          VentasMes: parseFloat(item.VentasMes),
+          CostoMes: parseFloat(item.CostoMes),
+          GananciaMes: parseFloat(item.GananciaMes)
+        }));
+        setChartData(formattedData);
       } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+        console.error('Error al obtener los datos de la API:', error);
       }
     };
 
     fetchData();
   }, []);
 
-  // Mostrar un mensaje de carga mientras se consulta la API
-  if (loading) {
-    return <div className="footer">Cargando datos...</div>;
-  }
-
-  // Mostrar un mensaje de error si algo sale mal
-  if (error) {
-    return <div className="footer">Error: {error}</div>;
-  }
-
-  
   return (
     <div className="section-three">
-      <h3>Ventas e Ingresos Mensuales</h3>
+      <h2>Gráfico de Ventas, Costos y Ganancias</h2>
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+        <BarChart data={chartData}>
+          <XAxis dataKey="mes" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="ventas" fill="#8884d8" />
-          <Bar dataKey="ingresos" fill="#82ca9d" />
+          <Bar dataKey="VentasMes" fill="#AD1ED9" name="Ventas" />
+          <Bar dataKey="CostoMes" fill="#D91E4A" name="Costos" />
+          <Bar dataKey="GananciaMes" fill="#4AD91E" name="Ganancias" />
         </BarChart>
       </ResponsiveContainer>
     </div>
